@@ -6,7 +6,7 @@ import {data} from './utils/data.js';
 function App() {
   return (
     <div className="App">
-        {/* <Filters /> */}
+        <Filters />
         <JobCards />
     </div>
   );

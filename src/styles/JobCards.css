@@ -1,5 +1,4 @@
 .jobcards-container {
-    margin: 5rem 15rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px 20px;

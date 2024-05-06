@@ -17,15 +17,15 @@ const Card = ({data}) => {
                 <p className='company-details__location'>{data.location}</p>
             </div>
         </div>
-        <p className='estimated-salary'>Estimated Salary: {data.minJdSalary ? data.minJdSalary : 0} - {data.maxJdSalary} </p>
+        <p className='estimated-salary'>Estimated Salary: {data.minJdSalary ? data.minJdSalary : 0} - {data.maxJdSalary} LPA</p>
         <div className='about-company'>
             <p className='about-company__heading'>About Company:</p>
             <p className='about-company__subheading'>About us</p>
-            <p className='about-company__content'><div class="overlap"></div><div className='view-job'>View job</div>{data.jobDetailsFromCompany}</p>
+            <p className='about-company__content'><div className="overlap"></div><div className='view-job'>View job</div>{data.jobDetailsFromCompany}</p>
         </div>
         <div className='experience'>
             <div className='experience__heading'>Minimum Experience</div>
-            <div className='experience__content'>{data.minExp} years</div>
+            <div className='experience__content'>{data.minExp ? `${data.minExp} years` : `None`} </div>
         </div>
         <div className='buttons'>
             <button className='apply-btn'>Easy Apply</button>

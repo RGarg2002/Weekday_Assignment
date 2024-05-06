@@ -2,39 +2,37 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Card from './Card';
 import '../styles/JobCards.css';
+import axios  from 'axios';
 
 const JobCards = () => {
   const [data, setData] = useState([]);
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  const body = JSON.stringify({
-      "limit": 10,
-      "offset": 0
-    });
-    
-  const requestOptions = {
-  method: "POST",
-  headers: myHeaders,
-  body
-  };
-    
-  async function fetchData() {
-    const data = await fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions)
-      .then((response) => response.json())
-      .then((result) => result)
-      .catch((error) => console.error(error));
-
-    setData(data);
-  }
   
+  function handleScroll (event) {
+    console.log("event", event);
+  }
+
+  async function fetchData () {
+      try {
+        const data = await axios.get('http://localhost:4000/data', {params: {hello : 1}});
+        setData(data.data);
+      }
+
+      catch (error) {
+        console.log(error);
+      }
+  }
+
   useEffect(() => {
-    fetchData();
-  }, [data])
+    try {
+        fetchData();
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }, []);
   
   return (
-    <div className='jobcards-container'>
-        {console.log("data", data)}
+    <div id='jobcards-container' className='jobcards-container' onScroll={handleScroll}> 
         {data?.jdList?.map((cardData) => <Card key={cardData.jdUid} data={cardData}/>)}
     </div>
   )

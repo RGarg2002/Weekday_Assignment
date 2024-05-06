@@ -15,7 +15,5 @@ img {
 }
 
 .App {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 5rem 15rem;
 }
