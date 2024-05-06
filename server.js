@@ -5,7 +5,7 @@ const port = 4000
 
 app.use(cors());
 app.get('/data', async (req, res) => {
-    const {role, exp, location, salary} = req.query;
+    const {role, exp, location, salary, offset} = req.query; //couldnt implement infinite scrolling
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 

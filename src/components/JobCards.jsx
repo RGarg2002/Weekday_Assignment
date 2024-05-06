@@ -7,11 +7,12 @@ import axios  from 'axios';
 const JobCards = ({filters}) => {
   console.log(filters);
   const [data, setData] = useState([]);
-  const [filterValues, setFilterValues] = useState([]);
+  const [offset, setOffset] = useState(9);
+  const [filterValues, setFilterValues] = useState([]); //for fetching filter values
 
   async function fetchData () {
       try {
-        const data = await axios.get('http://localhost:4000/data', {params: filters});
+        const data = await axios.get('http://localhost:4000/data', {params: {...filters, offset}});
         setData(data.data);
       }
 
@@ -29,6 +30,14 @@ const JobCards = ({filters}) => {
       }
   }
 
+  // function handleScroll (event) {
+  //     event.preventDefault();
+  //     const ofst = ((window.scrollY / 1000) + 1) * 9;
+  //     if (ofst > offset)
+  //       setOffset(ofst);
+  // }
+
+  // window.addEventListener("scroll", handleScroll);
   useEffect(() => {
     try {
         fetchData();
@@ -37,8 +46,8 @@ const JobCards = ({filters}) => {
     catch (error) {
       console.log(error);
     }
-  }, [filters]);
-  
+  }, [filters, offset]);
+
   return (
     <div id='jobcards-container' className='jobcards-container'> 
         {data?.map((cardData) => <Card key={cardData.jdUid} data={cardData}/>)}
